@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public abstract class Singleton<T> : MonoBehaviour
-    where T : Component
+    where T : MonoBehaviour
 {
     private static T _instance;
 
@@ -58,11 +58,10 @@ public abstract class Singleton<T> : MonoBehaviour
 
 /// <summary>
 /// Only use for Managers that will be included in DontDestroyOnLoad.
-/// No More Awake on child classes, Use Custom Awake Instead
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public abstract class SingletonPersistent<T> : Singleton<T>
-    where T : Component
+    where T : MonoBehaviour
 {
     protected override void Awake ()
     {
