@@ -8,10 +8,5 @@ namespace CustomHelpers
         {
             return Mathf.Approximately(a, b);
         }
-        
-        public static bool IsLayerInLayerMask(int layer, LayerMask mask)
-        {
-            return ((1 << layer) & mask) != 0;
-        }
     }
 }

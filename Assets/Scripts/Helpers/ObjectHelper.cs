@@ -70,9 +70,7 @@ namespace CustomHelpers
 
             if (a != b) return false;
 
-            if (a == null != (b == null)) return false;
-
-            return true;
+            return a == null == (b == null);
         }
 
         public static IEnumerable<T> NotUnityNull<T>(this IEnumerable<T> enumerable) where T : UnityEngine.Object

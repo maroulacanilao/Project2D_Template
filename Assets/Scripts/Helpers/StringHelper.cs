@@ -1,14 +1,13 @@
-using System.Text;
-
 namespace CustomHelpers
 {
     public static class StringHelpers
     {
+        private static System.Collections.Generic.Dictionary<string, int> StringHashDictionary;
         public static string SplitCamelCase(this string source)
         {
             if (string.IsNullOrEmpty(source)) return source;
             
-            StringBuilder sb = new StringBuilder();
+            var sb = new System.Text.StringBuilder();
 
             foreach (var c in source) 
             {
@@ -19,7 +18,23 @@ namespace CustomHelpers
 
             return sb.ToString();
         }
-        
-        
+
+        public static int ToHash(this string value)
+        {
+            if (StringHashDictionary == null)
+            {
+                StringHashDictionary = new System.Collections.Generic.Dictionary<string, int>();
+            }
+
+            if (StringHashDictionary.TryGetValue(value, out int hashID))
+            {
+                return hashID;
+            }
+
+            int newHashID = value.GetHashCode();
+            StringHashDictionary.Add(value, newHashID);
+            return newHashID;
+        }
+
     }
 }

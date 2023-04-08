@@ -5,7 +5,7 @@ namespace ObjectPool
 {
     internal sealed class Pool
     {
-        private Transform _root;
+        private Transform _rootContainer;
         private GameObject _source;
         private Poolable _prototype;
         private Stack<Poolable> _instances;
@@ -18,10 +18,15 @@ namespace ObjectPool
         private static readonly Dictionary<GameObject, Pool> _instanceLookup = new Dictionary<GameObject, Pool>(512);
 
         private const int InitialSize = 128;
-        public Pool(GameObject prefab, Transform parent = null)
+        
+        public Pool(GameObject prefab)
         {
+            _rootContainer = new GameObject($"{prefab.name} Pool Container").transform;
+
+            _rootContainer.position = Vector3.zero;
+            
             _source = prefab;
-            _root = parent;
+            
             _prototype = prefab.GetComponent<Poolable>();
             
             if (_prototype == null)
@@ -150,7 +155,7 @@ namespace ObjectPool
             instance.SetActive(false);
 
             var instanceTransform = instance.transform;
-            instanceTransform.SetParent(_root);
+            instanceTransform.SetParent(_rootContainer);
             instanceTransform.rotation = _rotation;
             instanceTransform.localScale = _scale;
 
@@ -206,11 +211,11 @@ namespace ObjectPool
 
         private Poolable CreateInstance()
         {
-            var instance = Object.Instantiate(_prototype, _root);
+            var instance = Object.Instantiate(_prototype, _rootContainer);
             var instanceGameObject = instance.gameObject;
             instanceGameObject.name = _source.name;
             
-            // if(_root != null)
+            
 
             _instanceLookup.Add(instanceGameObject, this);
             _allInstances.Add(instanceGameObject);
