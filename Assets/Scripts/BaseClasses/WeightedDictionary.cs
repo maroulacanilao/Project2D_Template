@@ -3,7 +3,7 @@ using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 [System.Serializable]
-public abstract class WeightedDictionary<T>
+public class WeightedDictionary<T>
 {
     [SerializeField] private SerializedDictionary<T, float> itemDictionary;
     private Dictionary<T, float> fixedChances;
@@ -91,7 +91,7 @@ public abstract class WeightedDictionary<T>
 
     public void ChangeWeightOfItem(T itemToChange, float newWeight)
     {
-        itemDictionary[itemWithLargestWeight] = newWeight;
+        itemDictionary[itemToChange] = newWeight;
         RecalculateChances();
     }
 }

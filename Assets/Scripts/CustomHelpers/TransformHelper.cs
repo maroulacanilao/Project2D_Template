@@ -4,11 +4,17 @@ namespace CustomHelpers
 {
     public static class TransformExtensions
     {
-        public static void ResetTransformation(this Transform transform)
+        /// <summary>
+        /// Resets position, scale, and rotation of transform 
+        /// </summary>
+        /// <param name="transform"></param>
+        /// <returns></returns>
+        public static Transform ResetTransformation(this Transform transform)
         {
             transform.position = Vector3.zero;
             transform.localRotation = Quaternion.identity;
             transform.localScale = Vector3.one;
+            return transform;
         }
         
         /// <summary>

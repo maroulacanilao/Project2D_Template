@@ -1,0 +1,4 @@
+DOTween - http://dotween.demigiant.com/documentation.php
+Naughty Attributes - https://dbrizov.github.io/na-docs/
+SerializedDictionary - https://drive.google.com/file/d/1o7CyWYzrh6QkPANiuTNwP-OX5xlswLQ3/view?usp=sharing
+RiderFlow - https://www.jetbrains.com/help/riderflow/getting-started.html

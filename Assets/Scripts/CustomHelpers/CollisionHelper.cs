@@ -105,7 +105,7 @@ namespace CustomHelpers
         {
             if(positionRelativeToTransform == default) positionRelativeToTransform = Vector2.zero;
             var pos = (Vector2)transform.position + positionRelativeToTransform;
-            collidersHit = Physics2D.OverlapBoxAll(pos, size, 0, layerMask);
+            collidersHit = Physics2D.OverlapBoxAll(pos, size, layerMask, layerMask);
             return collidersHit.Length > 0;
         }
     }
