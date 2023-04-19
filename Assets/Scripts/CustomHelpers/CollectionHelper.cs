@@ -1,10 +1,27 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace CustomHelpers
 {
     public static class CollectionHelper
     {
+        /// <summary>
+        /// returns true if the item was unique to the list and was successfully added
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="itemToAdd"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static bool AddUnique<T>(this IList<T> source, T itemToAdd)
+        {
+            if (source.Contains(itemToAdd)) return false;
+            source.Add(itemToAdd);
+            return true;
+        }
+        
+        
         #region Random Generic
 
         /// <summary>
@@ -62,7 +79,7 @@ namespace CustomHelpers
         {
             for ( int i = arr.Length - 1; i > -1; --i)
             {
-                Object.Destroy(arr[i]);
+                UnityEngine.Object.Destroy(arr[i]);
             }
         }
 
@@ -70,7 +87,7 @@ namespace CustomHelpers
         {
             for ( int i = list.Count - 1; i > -1; --i)
             {
-                Object.Destroy(list[i]);
+                UnityEngine.Object.Destroy(list[i]);
                 list.RemoveAt(i);
             }
             list.Clear();
@@ -80,7 +97,7 @@ namespace CustomHelpers
         {
             for ( int i = list.Count - 1; i > -1; --i)
             {
-                Object.Destroy(list[i].gameObject);
+                UnityEngine.Object.Destroy(list[i].gameObject);
                 list.RemoveAt(i);
             }
             list.Clear();
@@ -90,7 +107,7 @@ namespace CustomHelpers
         {
             for ( int i = list.Length - 1; i > -1; --i)
             {
-                Object.Destroy(list[i].gameObject);
+                UnityEngine.Object.Destroy(list[i].gameObject);
             }
         }
 
@@ -98,7 +115,19 @@ namespace CustomHelpers
         {
             for (var i = transform.childCount - 1; i >= 0; i--)
             {
-                Object.Destroy(transform.GetChild(i).gameObject);
+                UnityEngine.Object.Destroy(transform.GetChild(i).gameObject);
+            }
+        }
+
+        #endregion
+
+        #region Dictionary
+
+        public static void AddRange<K, V>(this IDictionary<K, V> source, IDictionary<K, V> ToAdd)
+        {
+            foreach (var _item in ToAdd)
+            {
+                source.Add(_item.Key,_item.Value);
             }
         }
 

@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91f9589bf1204ba4b90c861f0e50d08f, type: 3}
+  m_Name: DamageTypePropertyData
+  m_EditorClassIdentifier: 
+  PhysicalDamageProperty:
+    <DamageType>k__BackingField: 1
+    <Strength>k__BackingField: 0
+    <Weakness>k__BackingField: 0
+    <dmgModifierDictionary>k__BackingField:
+      _serializedList:
+      - Key: 1
+        Value: 1
+      - Key: 2
+        Value: 1
+      - Key: 3
+        Value: 1
+      - Key: 4
+        Value: 1
+      - Key: 5
+        Value: 1
+      - Key: 6
+        Value: 1
+  FireDamageProperty:
+    <DamageType>k__BackingField: 2
+    <Strength>k__BackingField: 0
+    <Weakness>k__BackingField: 0
+    <dmgModifierDictionary>k__BackingField:
+      _serializedList:
+      - Key: 1
+        Value: 1
+      - Key: 2
+        Value: 1
+      - Key: 3
+        Value: 1
+      - Key: 4
+        Value: 1
+      - Key: 5
+        Value: 1
+      - Key: 6
+        Value: 1
+  WaterDamageProperty:
+    <DamageType>k__BackingField: 3
+    <Strength>k__BackingField: 0
+    <Weakness>k__BackingField: 0
+    <dmgModifierDictionary>k__BackingField:
+      _serializedList:
+      - Key: 1
+        Value: 1
+      - Key: 2
+        Value: 1
+      - Key: 3
+        Value: 1
+      - Key: 4
+        Value: 1
+      - Key: 5
+        Value: 1
+      - Key: 6
+        Value: 1
+  ElectricityDamageProperty:
+    <DamageType>k__BackingField: 1
+    <Strength>k__BackingField: 0
+    <Weakness>k__BackingField: 0
+    <dmgModifierDictionary>k__BackingField:
+      _serializedList:
+      - Key: 1
+        Value: 1
+      - Key: 2
+        Value: 1
+      - Key: 3
+        Value: 1
+      - Key: 4
+        Value: 1
+      - Key: 5
+        Value: 1
+      - Key: 6
+        Value: 1
+  EarthDamageProperty:
+    <DamageType>k__BackingField: 1
+    <Strength>k__BackingField: 0
+    <Weakness>k__BackingField: 0
+    <dmgModifierDictionary>k__BackingField:
+      _serializedList:
+      - Key: 1
+        Value: 1
+      - Key: 2
+        Value: 1
+      - Key: 3
+        Value: 1
+      - Key: 4
+        Value: 1
+      - Key: 5
+        Value: 1
+      - Key: 6
+        Value: 1
+  WindDamageProperty:
+    <DamageType>k__BackingField: 1
+    <Strength>k__BackingField: 0
+    <Weakness>k__BackingField: 0
+    <dmgModifierDictionary>k__BackingField:
+      _serializedList:
+      - Key: 1
+        Value: 1
+      - Key: 2
+        Value: 1
+      - Key: 3
+        Value: 1
+      - Key: 4
+        Value: 1
+      - Key: 5
+        Value: 1
+      - Key: 6
+        Value: 1

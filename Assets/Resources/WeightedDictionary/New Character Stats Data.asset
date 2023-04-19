@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850b368c39f62b44dbf3e1e29a49f9c6, type: 3}
+  m_Name: New Character Stats Data
+  m_EditorClassIdentifier: 
+  <baseBattleStats>k__BackingField:
+    maxHp: 0
+    maxMana: 0
+    weaponDamage: 0
+    accuracy: 0
+    skillDamage: 0
+    armor: 0
+    evasion: 0
+  <DamageTypeResistance>k__BackingField:
+    _serializedList:
+    - Key: -1
+      Value: 0
+    - Key: 0
+      Value: 0
+    - Key: 1
+      Value: 0
+    - Key: 2
+      Value: 0
+    - Key: 3
+      Value: 0
+    - Key: 4
+      Value: 0
+    - Key: 5
+      Value: 0
+    - Key: 6
+      Value: 0

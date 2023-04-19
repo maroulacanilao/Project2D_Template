@@ -47,7 +47,11 @@ public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
         float largestWeight = 0;
         foreach (var w in itemDictionary)
         {
-            if (w.Value > largestWeight) itemWithLargestWeight = w.Key;
+            if (w.Value > largestWeight)
+            {
+                largestWeight = w.Value;
+                itemWithLargestWeight = w.Key;
+            }
 
             totalWeight += w.Value;
             fixedList.Add(w.Key, totalWeight);

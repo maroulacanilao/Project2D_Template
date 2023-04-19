@@ -4,6 +4,6 @@ using UnityEngine;
 
 public struct HealInfo
 {
-    public float HealAmount;
+    public int HealAmount;
     public GameObject Source;
 }

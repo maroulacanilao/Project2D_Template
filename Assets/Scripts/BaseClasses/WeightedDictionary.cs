@@ -18,23 +18,32 @@ public class WeightedDictionary<T>
     public void Initialize()
     {
         if (hasInitialized) return;
+        
+        ForceInitialize();
+    }
 
+    public void ForceInitialize()
+    {
         rand = new System.Random();
         fixedChances = new Dictionary<T, float>();
         RecalculateChances();
 
         hasInitialized = true;
     }
-
+    
     public void RecalculateChances()
     {
         if (fixedChances == null) fixedChances = new Dictionary<T, float>();
         else fixedChances.Clear();
 
-        float largestWeight = 0;
+        float _largestWeight = 0;
         foreach (var w in itemDictionary)
         {
-            if (w.Value > largestWeight) itemWithLargestWeight = w.Key;
+            if (w.Value > _largestWeight)
+            {
+                _largestWeight = w.Value;
+                itemWithLargestWeight = w.Key;
+            }
 
             totalWeight += w.Value;
             fixedChances.Add(w.Key, totalWeight);

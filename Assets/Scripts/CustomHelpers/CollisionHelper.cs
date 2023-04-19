@@ -43,9 +43,31 @@ namespace CustomHelpers
         /// <param name="gameObject"></param>
         /// <param name="Tag"></param>
         /// <returns></returns>
+        public static bool CompareTagHash(this Collider collider, string tag)
+        {
+            return collider.tag.ToHash() == tag.ToHash();
+        }
+        
+        /// <summary>
+        /// Similar To CompareTag() but uses internal hashing to be more efficient
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="Tag"></param>
+        /// <returns></returns>
         public static bool CompareTagHash(this Collider2D collider2D, int tagHash)
         {
             return collider2D.tag.ToHash() == tagHash;
+        }
+        
+        /// <summary>
+        /// Similar To CompareTag() but uses internal hashing to be more efficient
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="Tag"></param>
+        /// <returns></returns>
+        public static bool CompareTagHash(this Collider collider, int tagHash)
+        {
+            return collider.tag.ToHash() == tagHash;
         }
         
         /// <summary>
@@ -66,10 +88,34 @@ namespace CustomHelpers
         /// <param name="gameObject"></param>
         /// <param name="Tag"></param>
         /// <returns></returns>
+        public static bool CompareTagHash(this Collider collider, string tag, out GameObject colliderGameObject)
+        {
+            colliderGameObject = collider.gameObject;
+            return collider.tag.ToHash() == tag.ToHash();
+        }
+        
+        /// <summary>
+        /// Similar To CompareTag() but uses internal hashing to be more efficient
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="Tag"></param>
+        /// <returns></returns>
         public static bool CompareTagHash(this Collider2D collider2D, int tagHash, out GameObject colliderGameObject)
         {
             colliderGameObject = collider2D.gameObject;
             return collider2D.tag.ToHash() == tagHash;
+        }
+        
+        /// <summary>
+        /// Similar To CompareTag() but uses internal hashing to be more efficient
+        /// </summary>
+        /// <param name="gameObject"></param>
+        /// <param name="Tag"></param>
+        /// <returns></returns>
+        public static bool CompareTagHash(this Collider collider, int tagHash, out GameObject colliderGameObject)
+        {
+            colliderGameObject = collider.gameObject;
+            return collider.tag.ToHash() == tagHash;
         }
 
         public static bool IsLayerInLayerMask(int layer, LayerMask mask)
@@ -87,26 +133,21 @@ namespace CustomHelpers
             return IsLayerInLayerMask(collider2D.gameObject.layer, layerMask);
         }
         
+        public static bool CompareLayer(this Collider collider, LayerMask layerMask)
+        {
+            return IsLayerInLayerMask(collider.gameObject.layer, layerMask);
+        }
+
         public static bool CompareLayer(this Collider2D collider2D, LayerMask layerMask, out GameObject colliderGameObject)
         {
             colliderGameObject = collider2D.gameObject;
             return IsLayerInLayerMask(colliderGameObject.layer, layerMask);
         }
         
-        public static bool RaycastHit2D(Vector2 origin, Vector2 direction,out RaycastHit2D hitInfo, float distance = Mathf.Infinity,
-            int layerMask = Physics2D.DefaultRaycastLayers, float minDepth = -Mathf.Infinity, float maxDepth = Mathf.Infinity)
+        public static bool CompareLayer(this Collider collider, LayerMask layerMask, out GameObject colliderGameObject)
         {
-            hitInfo = Physics2D.Raycast(origin, direction, distance, layerMask, minDepth, maxDepth);
-            return hitInfo && hitInfo.collider;
-        }
-
-        public static bool TryGetOverlapInBox(this Transform transform, Vector2 size, out Collider2D[] collidersHit, 
-            Vector2 positionRelativeToTransform = default, int layerMask = Physics2D.DefaultRaycastLayers)
-        {
-            if(positionRelativeToTransform == default) positionRelativeToTransform = Vector2.zero;
-            var pos = (Vector2)transform.position + positionRelativeToTransform;
-            collidersHit = Physics2D.OverlapBoxAll(pos, size, layerMask, layerMask);
-            return collidersHit.Length > 0;
+            colliderGameObject = collider.gameObject;
+            return IsLayerInLayerMask(colliderGameObject.layer, layerMask);
         }
     }
 }
