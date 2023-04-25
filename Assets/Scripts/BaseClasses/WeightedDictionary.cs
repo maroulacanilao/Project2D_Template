@@ -33,10 +33,10 @@ public class WeightedDictionary<T>
     
     public void RecalculateChances()
     {
-        if (fixedChances == null) fixedChances = new Dictionary<T, float>();
-        else fixedChances.Clear();
+        fixedChances = new Dictionary<T, float>();
 
         float _largestWeight = 0;
+        totalWeight = 0;
         foreach (var w in itemDictionary)
         {
             if (w.Value > _largestWeight)

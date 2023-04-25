@@ -45,6 +45,7 @@ public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
         if (itemDictionary.Count == 0) return;
 
         float largestWeight = 0;
+        totalWeight = 0;
         foreach (var w in itemDictionary)
         {
             if (w.Value > largestWeight)
