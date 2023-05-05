@@ -20,7 +20,7 @@ namespace CustomHelpers
             // Checks whether an object is null or Unity pseudo-null
             // without having to cast to UnityEngine.Object manually
 
-            return obj == null || (obj is UnityEngine.Object o && o == null);
+            return obj == null || obj is UnityEngine.Object o && o == null;
         }
 
         public static bool IsUnityValid(this UnityEngine.Object obj)
@@ -90,6 +90,16 @@ namespace CustomHelpers
                 foreach (var result in rootGameObject.GetComponentsInChildren<T>(true))
                     yield return result;
             }
+        }
+
+        public static T GetOrAddComponent<T>(this UnityEngine.GameObject gameObject_) where T : UnityEngine.Component
+        {
+            return gameObject_.TryGetComponent(out T _component) ? _component : gameObject_.AddComponent<T>();
+        }
+        
+        public static T GetOrAddComponent<T>(this UnityEngine.Component component_) where T : UnityEngine.Component
+        {
+            return component_.gameObject.GetOrAddComponent<T>();
         }
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using UnityEngine;
 
 public class BattleData : ScriptableObject
@@ -9,7 +10,7 @@ public class BattleData : ScriptableObject
     public CharacterBase enemyCharacter { get; private set; }
     public int playerHp { get; private set; }
     public int playerMana { get; private set; }
-    
+
     public bool IsPlayerFirst { get; private set; }
 
     private void ResetData()

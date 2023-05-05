@@ -13,16 +13,16 @@ public abstract class Singleton<T> : MonoBehaviour
             if (_instance) return _instance;
 
             // get instances
-            T[] objs = FindObjectsOfType(typeof(T)) as T[];
-            
+            var objs = FindObjectsOfType(typeof(T)) as T[];
+
 
             if (objs.Length == 0)
             {
                 // create instance if there is none
-                GameObject obj = new GameObject();
+                var obj = new GameObject();
                 _instance = obj.AddComponent<T>();
             }
-            
+
             else if (objs.Length == 1)
             {
                 _instance = objs[0];
@@ -31,23 +31,23 @@ public abstract class Singleton<T> : MonoBehaviour
             else if (objs.Length > 1)
             {
                 _instance = objs[0];
-                for ( int i = objs.Length - 1; i > -1; --i)
+                for (var i = objs.Length - 1; i > -1; --i)
                 {
-                    if(_instance == objs[i]) continue;
+                    if (_instance == objs[i]) continue;
                     Destroy(objs[i]);
                 }
             }
 
             return _instance;
         }
-        
+
         protected set => _instance = value;
     }
 
     protected virtual void Awake()
     {
         if (_instance == null) _instance = this as T;
-        
+
         else if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -63,10 +63,10 @@ public abstract class Singleton<T> : MonoBehaviour
 public abstract class SingletonPersistent<T> : Singleton<T>
     where T : MonoBehaviour
 {
-    protected override void Awake ()
+    protected override void Awake()
     {
         base.Awake();
-        
+
         if (Instance.gameObject.scene.buildIndex > -1)
         {
             DontDestroyOnLoad(this);

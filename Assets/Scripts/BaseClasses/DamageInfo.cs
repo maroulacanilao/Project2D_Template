@@ -9,7 +9,7 @@ public enum DamageType
     Water = 3,
     Electricity = 4,
     Earth = 5,
-    Wind = 6,
+    Wind = 6
 }
 
 public struct DamageInfo
@@ -17,7 +17,7 @@ public struct DamageInfo
     public int DamageAmount;
     public GameObject Source;
     public DamageType DamageType;
-    public RaycastHit HitInfo;   
+    public RaycastHit HitInfo;
     public Vector3 Position;
 
     public DamageInfo(int damageAmount_, GameObject source_, DamageType damageType_ = DamageType.None, RaycastHit hitInfo_ = default, Vector3 position_ = default)

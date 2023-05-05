@@ -14,12 +14,15 @@ namespace CustomHelpers
 
         public static bool IsOverUI()
         {
-            _eventDataCurrentPosition = new PointerEventData(EventSystem.current) { position = Input.mousePosition };
+            _eventDataCurrentPosition = new PointerEventData(EventSystem.current)
+            {
+                position = Input.mousePosition
+            };
             _results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(_eventDataCurrentPosition, _results);
             return _results.Count > 0;
         }
-        
+
         /// <summary>
         ///     returns world size base on the screen and camera size
         /// </summary>
@@ -27,7 +30,7 @@ namespace CustomHelpers
         /// <returns></returns>
         public static Vector2 GetScreenWorldSize(this Camera cam)
         {
-            var aspect = (float)Screen.width / Screen.height;
+            var aspect = (float) Screen.width / Screen.height;
 
             var worldHeight = cam.orthographicSize * 2;
 

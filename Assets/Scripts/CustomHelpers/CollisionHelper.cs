@@ -14,7 +14,7 @@ namespace CustomHelpers
         {
             return gameObject.tag.ToHash() == tag.ToHash();
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -25,7 +25,7 @@ namespace CustomHelpers
         {
             return gameObject.tag.ToHash() == tagHash;
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -36,7 +36,7 @@ namespace CustomHelpers
         {
             return collider2D.tag.ToHash() == tag.ToHash();
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -47,7 +47,7 @@ namespace CustomHelpers
         {
             return collider.tag.ToHash() == tag.ToHash();
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -58,7 +58,7 @@ namespace CustomHelpers
         {
             return collider2D.tag.ToHash() == tagHash;
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -69,7 +69,7 @@ namespace CustomHelpers
         {
             return collider.tag.ToHash() == tagHash;
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -81,7 +81,7 @@ namespace CustomHelpers
             colliderGameObject = collider2D.gameObject;
             return collider2D.tag.ToHash() == tag.ToHash();
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -93,7 +93,7 @@ namespace CustomHelpers
             colliderGameObject = collider.gameObject;
             return collider.tag.ToHash() == tag.ToHash();
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -105,7 +105,7 @@ namespace CustomHelpers
             colliderGameObject = collider2D.gameObject;
             return collider2D.tag.ToHash() == tagHash;
         }
-        
+
         /// <summary>
         /// Similar To CompareTag() but uses internal hashing to be more efficient
         /// </summary>
@@ -120,19 +120,19 @@ namespace CustomHelpers
 
         public static bool IsLayerInLayerMask(int layer, LayerMask mask)
         {
-            return ((1 << layer) & mask) != 0;
+            return (1 << layer & mask) != 0;
         }
 
         public static bool CompareLayer(this GameObject gameObject, LayerMask layerMask)
         {
             return IsLayerInLayerMask(gameObject.layer, layerMask);
         }
-        
+
         public static bool CompareLayer(this Collider2D collider2D, LayerMask layerMask)
         {
             return IsLayerInLayerMask(collider2D.gameObject.layer, layerMask);
         }
-        
+
         public static bool CompareLayer(this Collider collider, LayerMask layerMask)
         {
             return IsLayerInLayerMask(collider.gameObject.layer, layerMask);
@@ -143,7 +143,7 @@ namespace CustomHelpers
             colliderGameObject = collider2D.gameObject;
             return IsLayerInLayerMask(colliderGameObject.layer, layerMask);
         }
-        
+
         public static bool CompareLayer(this Collider collider, LayerMask layerMask, out GameObject colliderGameObject)
         {
             colliderGameObject = collider.gameObject;

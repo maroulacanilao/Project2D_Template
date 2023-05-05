@@ -6,15 +6,15 @@ using UnityEngine;
 
 public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
 {
-    [SerializedDictionary("Item","Weight")]
+    [SerializedDictionary("Item", "Weight")]
     [SerializeField] protected SerializedDictionary<T, float> itemDictionary = new SerializedDictionary<T, float>();
-    
+
     protected Dictionary<T, float> fixedList;
-    
+
     protected bool hasInitialized = false;
     protected float totalWeight;
     protected T itemWithLargestWeight;
-    
+
     protected System.Random rand;
 
     private void OnEnable()
@@ -46,6 +46,7 @@ public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
 
         float largestWeight = 0;
         totalWeight = 0;
+
         foreach (var w in itemDictionary)
         {
             if (w.Value > largestWeight)
@@ -58,7 +59,7 @@ public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
             fixedList.Add(w.Key, totalWeight);
         }
     }
-    
+
     /// <summary>
     /// Get a random item according to the weighted chance of the collection
     /// </summary>
@@ -75,12 +76,12 @@ public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
         if (fixedList.Count == 0) return default;
 
         // random number
-        float rngVal = ((float)rand.NextDouble() * totalWeight);
+        var rngVal = (float) rand.NextDouble() * totalWeight;
 
         foreach (var itemWeightPair in fixedList)
         {
             if (itemWeightPair.Value <= rngVal) continue;
-            
+
             return itemWeightPair.Key;
         }
 
@@ -97,21 +98,21 @@ public abstract class WeightedDictionary_ScriptableObject<T> : ScriptableObject
         var index = rand.Next(0, fixedList.Count);
         return fixedList.ElementAt(index).Key;
     }
-    
+
     public void AddItem(T itemToAdd, float weight)
     {
         itemDictionary.Add(itemToAdd, weight);
-        
+
         totalWeight += weight;
-        
+
         fixedList.Add(itemToAdd, totalWeight);
     }
 
     public void RemoveItem(T itemToRemove)
     {
-        if(!itemDictionary.Remove(itemToRemove)) return;
-        if(!fixedList.Remove(itemToRemove)) return;
-        
+        if (!itemDictionary.Remove(itemToRemove)) return;
+        if (!fixedList.Remove(itemToRemove)) return;
+
         RecalculateChances();
     }
 

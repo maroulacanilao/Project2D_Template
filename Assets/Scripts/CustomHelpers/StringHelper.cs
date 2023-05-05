@@ -6,10 +6,10 @@ namespace CustomHelpers
         public static string SplitCamelCase(this string source)
         {
             if (string.IsNullOrEmpty(source)) return source;
-            
+
             var sb = new System.Text.StringBuilder();
 
-            foreach (var c in source) 
+            foreach (var c in source)
             {
                 if (char.IsUpper(c)) sb.Append(' ');
 
@@ -26,12 +26,12 @@ namespace CustomHelpers
                 StringHashDictionary = new System.Collections.Generic.Dictionary<string, int>();
             }
 
-            if (StringHashDictionary.TryGetValue(value, out int hashID))
+            if (StringHashDictionary.TryGetValue(value, out var hashID))
             {
                 return hashID;
             }
 
-            int newHashID = value.GetHashCode();
+            var newHashID = value.GetHashCode();
             StringHashDictionary.Add(value, newHashID);
             return newHashID;
         }

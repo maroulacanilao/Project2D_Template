@@ -16,7 +16,7 @@ namespace CustomHelpers
             transform.localScale = Vector3.one;
             return transform;
         }
-        
+
         /// <summary>
         /// Add current position to given Position
         /// </summary>
@@ -27,6 +27,12 @@ namespace CustomHelpers
         public static Transform AddPosition(this Transform transform, float X, float Y, float Z = 0)
         {
             transform.position = transform.position.Add(X, Y, Z);
+            return transform;
+        }
+        
+        public static Transform AddPosition(this Transform transform, Vector3 position)
+        {
+            transform.position += position;
             return transform;
         }
 
@@ -41,7 +47,7 @@ namespace CustomHelpers
             transform.position = transform.position.AddX(X);
             return transform;
         }
-        
+
         /// <summary>
         /// Add current Y position to a given value
         /// </summary>
@@ -53,7 +59,7 @@ namespace CustomHelpers
             transform.position = transform.position.AddY(Y);
             return transform;
         }
-        
+
         /// <summary>
         /// Add current Z position to a given value
         /// </summary>
@@ -73,7 +79,7 @@ namespace CustomHelpers
         /// <param name="X"></param>
         /// <param name="Y"></param>
         /// <param name="Z"></param>
-        public static Transform MoveTo(this Transform transform, float X, float Y, float Z = 0)
+        public static Transform SetPosition(this Transform transform, float X, float Y, float Z = 0)
         {
             transform.position = new Vector3(X, Y, Z);
             return transform;
@@ -85,33 +91,33 @@ namespace CustomHelpers
         /// <param name="transform"></param>
         /// <param name="X"></param>
         /// <returns></returns>
-        public static Transform MoveToX(this Transform transform, float X)
+        public static Transform SetPositionX(this Transform transform, float X)
         {
-            transform.position = transform.position.ReplaceX(X);
+            transform.position = transform.position.SetX(X);
             return transform;
         }
-        
+
         /// <summary>
         /// Teleports transform to a given Y position while preserving X and Z
         /// </summary>
         /// <param name="transform"></param>
         /// <param name="Y"></param>
         /// <returns></returns>
-        public static Transform MoveToY(this Transform transform, float Y)
+        public static Transform SetPositionY(this Transform transform, float Y)
         {
-            transform.position = transform.position.ReplaceY(Y);
+            transform.position = transform.position.SetY(Y);
             return transform;
         }
-        
+
         /// <summary>
         /// Teleports transform to a given Z position while preserving X and Y
         /// </summary>
         /// <param name="transform"></param>
         /// <param name="Z"></param>
         /// <returns></returns>
-        public static Transform MoveToZ(this Transform transform, float Z)
+        public static Transform SetPositionZ(this Transform transform, float Z)
         {
-            transform.position = transform.position.ReplaceZ(Z);
+            transform.position = transform.position.SetZ(Z);
             return transform;
         }
     }

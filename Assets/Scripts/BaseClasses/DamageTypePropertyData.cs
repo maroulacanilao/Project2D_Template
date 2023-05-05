@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DamageTypePropertyData", menuName = "ScriptableObjects/Persistent/Damage Type Property Data")]
+[CreateAssetMenu(fileName = "DamageTypePropertyData", menuName = "ScriptableObjects/Persistent/armorValue Type Property Data")]
 public class DamageTypePropertyData : ScriptableObject
 {
-    [System.Serializable]
+    [Serializable]
     public class DamageTypeProperty
     {
         [field: SerializeField] public DamageType DamageType { get; private set; }
@@ -19,12 +19,12 @@ public class DamageTypePropertyData : ScriptableObject
         {
             DamageType = damageType_;
             dmgModifierDictionary = new SerializedDictionary<DamageType, float>();
-            dmgModifierDictionary.Add(DamageType.Physical,1);
-            dmgModifierDictionary.Add(DamageType.Fire,1);
-            dmgModifierDictionary.Add(DamageType.Water,1);
-            dmgModifierDictionary.Add(DamageType.Electricity,1);
-            dmgModifierDictionary.Add(DamageType.Earth,1);
-            dmgModifierDictionary.Add(DamageType.Wind,1);
+            dmgModifierDictionary.Add(DamageType.Physical, 1);
+            dmgModifierDictionary.Add(DamageType.Fire, 1);
+            dmgModifierDictionary.Add(DamageType.Water, 1);
+            dmgModifierDictionary.Add(DamageType.Electricity, 1);
+            dmgModifierDictionary.Add(DamageType.Earth, 1);
+            dmgModifierDictionary.Add(DamageType.Wind, 1);
         }
     }
 
@@ -40,7 +40,7 @@ public class DamageTypePropertyData : ScriptableObject
     private void Reset()
     {
         DamageTypePropertyDictionary = new Dictionary<DamageType, DamageTypeProperty>();
-        
+
         DamageTypePropertyDictionary.Add(DamageType.Physical, PhysicalDamageProperty);
         DamageTypePropertyDictionary.Add(DamageType.Fire, FireDamageProperty);
         DamageTypePropertyDictionary.Add(DamageType.Water, WaterDamageProperty);
@@ -59,11 +59,11 @@ public static class DamageTypePropertiesHelper
         if (DamageTypePropertyData != null) return;
         // TODO: Set Data
     }
-    
+
     public static float DamageModifierAgainst(this DamageType source, DamageType target)
     {
         InitializeData();
-        return 
+        return
             DamageTypePropertyData.DamageTypePropertyDictionary[source].dmgModifierDictionary[target];
     }
 
@@ -72,7 +72,7 @@ public static class DamageTypePropertiesHelper
         InitializeData();
         return DamageTypePropertyData.DamageTypePropertyDictionary[source].Weakness;
     }
-    
+
     public static DamageType Strength(this DamageType source)
     {
         InitializeData();

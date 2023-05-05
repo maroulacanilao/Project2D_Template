@@ -1,4 +1,5 @@
 using System.Collections;
+using Character;
 
 
 public abstract class BattleStateBase
@@ -7,7 +8,7 @@ public abstract class BattleStateBase
     protected BattleStateMachine StateMachine;
     protected CharacterBase player;
     protected CharacterBase enemy;
-    
+
     public BattleStateBase(BattleManager battleManager_, BattleStateMachine stateMachine_)
     {
         BattleManager = battleManager_;
@@ -15,7 +16,7 @@ public abstract class BattleStateBase
         player = battleManager_.player;
         enemy = battleManager_.enemy;
     }
-    
+
     public abstract IEnumerator Enter();
 
     public abstract IEnumerator Exit();

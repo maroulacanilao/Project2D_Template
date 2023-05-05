@@ -1,14 +1,11 @@
 using System.Collections.Generic;
 using AYellowpaper.SerializedCollections;
-using UnityEngine;
 
 [System.Serializable]
 public class WeightedDictionary<T>
 {
-    [SerializeField] private SerializedDictionary<T, float> itemDictionary;
+    [UnityEngine.SerializeField] private SerializedDictionary<T, float> itemDictionary;
     private Dictionary<T, float> fixedChances;
-
-    private System.Random rand;
 
     private bool hasInitialized = false;
     private float totalWeight;
@@ -18,25 +15,25 @@ public class WeightedDictionary<T>
     public void Initialize()
     {
         if (hasInitialized) return;
-        
+
         ForceInitialize();
     }
 
     public void ForceInitialize()
     {
-        rand = new System.Random();
         fixedChances = new Dictionary<T, float>();
+        if (itemDictionary.Count == 0) return;
         RecalculateChances();
 
         hasInitialized = true;
     }
-    
+
     public void RecalculateChances()
     {
+        totalWeight = 0;
         fixedChances = new Dictionary<T, float>();
 
         float _largestWeight = 0;
-        totalWeight = 0;
         foreach (var w in itemDictionary)
         {
             if (w.Value > _largestWeight)
@@ -56,13 +53,13 @@ public class WeightedDictionary<T>
         Initialize();
 
         // check if the dictionary size the item list count is the same. recalculate chances if it is not 
-        if (fixedChances.Count != itemDictionary.Count) RecalculateChances();
+        if (fixedChances == null || fixedChances.Count != itemDictionary.Count) RecalculateChances();
 
         // early returns
         if (fixedChances.Count == 0) return default;
 
         // random number
-        float rngVal = ((float)rand.NextDouble() * totalWeight);
+        var rngVal = UnityEngine.Random.value * totalWeight;
 
         foreach (var w in fixedChances)
         {
@@ -79,17 +76,17 @@ public class WeightedDictionary<T>
     public void AddItem(T itemToAdd, float weight)
     {
         itemDictionary.Add(itemToAdd, weight);
-        
+
         totalWeight += weight;
-        
+
         fixedChances.Add(itemToAdd, totalWeight);
     }
 
     public void RemoveItem(T itemToRemove)
     {
-        if(!itemDictionary.Remove(itemToRemove)) return;
-        if(!fixedChances.Remove(itemToRemove)) return;
-        
+        if (!itemDictionary.Remove(itemToRemove)) return;
+        if (!fixedChances.Remove(itemToRemove)) return;
+
         RecalculateChances();
     }
 

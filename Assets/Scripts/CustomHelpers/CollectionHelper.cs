@@ -7,6 +7,8 @@ namespace CustomHelpers
 {
     public static class CollectionHelper
     {
+        #region General
+
         /// <summary>
         /// returns true if the item was unique to the list and was successfully added
         /// </summary>
@@ -21,7 +23,49 @@ namespace CustomHelpers
             return true;
         }
         
+        /// <summary>
+        /// returns true if it was successfully moved
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="itemToMove_"></param>
+        /// <param name="index_"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static bool MoveItem<T>(this IList<T> source, T itemToMove_, int index_)
+        {
+            if (!source.Remove(itemToMove_)) return false;
+            source.Insert(index_,itemToMove_);
+            return true;
+        }
         
+        /// <summary>
+        /// returns true if it was successfully moved to first
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="itemToMove_"></param>
+        /// <typeparam name="T"></typeparam>
+        public static bool MoveItemToFirst<T>(this IList<T> source, T itemToMove_)
+        {
+            if (!source.Remove(itemToMove_)) return false;
+            source.Insert(0,itemToMove_);
+            return true;
+        }
+        
+        /// <summary>
+        /// returns true if it was successfully moved to last
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="itemToMove_"></param>
+        /// <typeparam name="T"></typeparam>
+        public static bool MoveItemToLast<T>(this IList<T> source, T itemToMove_)
+        {
+            if (!source.Remove(itemToMove_)) return false;
+            source.Add(itemToMove_);
+            return true;
+        }
+
+        #endregion
+
         #region Random Generic
 
         /// <summary>
@@ -31,12 +75,12 @@ namespace CustomHelpers
         /// <param name="list"></param>
         public static void Shuffle<T>(this IList<T> list)
         {
-            System.Random rng = new System.Random();
-            int n = list.Count;
+            var rng = new System.Random();
+            var n = list.Count;
             while (n > 1)
             {
                 n--;
-                int k = rng.Next(n + 1);
+                var k = rng.Next(n + 1);
                 (list[k], list[n]) = (list[n], list[k]);
             }
         }
@@ -50,7 +94,7 @@ namespace CustomHelpers
         /// <returns></returns>
         public static T GetRandomItem<T>(this IList<T> list)
         {
-            if (list.Count == 0) throw new System.IndexOutOfRangeException("Cannot select a random item from an empty list");
+            if (list.Count == 0) throw new IndexOutOfRangeException("Cannot select a random item from an empty list");
             return list[UnityEngine.Random.Range(0, list.Count)];
         }
 
@@ -63,9 +107,9 @@ namespace CustomHelpers
         /// <returns></returns>
         public static T RemoveRandomItem<T>(this IList<T> list)
         {
-            if (list.Count == 0) throw new System.IndexOutOfRangeException("Cannot remove a random item from an empty list");
-            int index = UnityEngine.Random.Range(0, list.Count);
-            T item = list[index];
+            if (list.Count == 0) throw new IndexOutOfRangeException("Cannot remove a random item from an empty list");
+            var index = UnityEngine.Random.Range(0, list.Count);
+            var item = list[index];
             list.RemoveAt(index);
             return item;
         }
@@ -74,10 +118,9 @@ namespace CustomHelpers
 
         #region Destroy Collection
 
-        
         public static void DestroyGameObjects(this GameObject[] arr)
         {
-            for ( int i = arr.Length - 1; i > -1; --i)
+            for (var i = arr.Length - 1; i > -1; --i)
             {
                 UnityEngine.Object.Destroy(arr[i]);
             }
@@ -85,7 +128,7 @@ namespace CustomHelpers
 
         public static void DestroyGameObjects(this List<GameObject> list)
         {
-            for ( int i = list.Count - 1; i > -1; --i)
+            for (var i = list.Count - 1; i > -1; --i)
             {
                 UnityEngine.Object.Destroy(list[i]);
                 list.RemoveAt(i);
@@ -93,9 +136,19 @@ namespace CustomHelpers
             list.Clear();
         }
 
-        public static void DestroyComponents(this List<Component> list)
+        public static void DestroyGameObjects(this IList<GameObject> list_)
         {
-            for ( int i = list.Count - 1; i > -1; --i)
+            for (var i = list_.Count - 1; i > -1; --i)
+            {
+                UnityEngine.Object.Destroy(list_[i]);
+                list_.RemoveAt(i);
+            }
+            list_.Clear();
+        }
+
+        public static void DestroyComponents<T>(this IList<T> list) where T : Component
+        {
+            for (var i = list.Count - 1; i > -1; --i)
             {
                 UnityEngine.Object.Destroy(list[i].gameObject);
                 list.RemoveAt(i);
@@ -103,9 +156,10 @@ namespace CustomHelpers
             list.Clear();
         }
         
+
         public static void DestroyComponents(this Component[] list)
         {
-            for ( int i = list.Length - 1; i > -1; --i)
+            for (var i = list.Length - 1; i > -1; --i)
             {
                 UnityEngine.Object.Destroy(list[i].gameObject);
             }
@@ -127,7 +181,7 @@ namespace CustomHelpers
         {
             foreach (var _item in ToAdd)
             {
-                source.Add(_item.Key,_item.Value);
+                source.Add(_item.Key, _item.Value);
             }
         }
 

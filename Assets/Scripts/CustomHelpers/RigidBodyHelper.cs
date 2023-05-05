@@ -10,7 +10,7 @@ namespace CustomHelpers
         {
             rigidbody2D.velocity = velocity;
         }
-        
+
         public static void SetVelocity(this Rigidbody2D rigidbody2D, float xVelocity, float yVelocity)
         {
             rigidbody2D.velocity = new Vector2(xVelocity, yVelocity);
@@ -18,14 +18,14 @@ namespace CustomHelpers
 
         public static void SetVelocityX(this Rigidbody2D rigidbody2D, float xVelocity)
         {
-            rigidbody2D.velocity = rigidbody2D.velocity.ReplaceX(xVelocity);
+            rigidbody2D.velocity = rigidbody2D.velocity.SetX(xVelocity);
         }
-        
+
         public static void SetVelocityY(this Rigidbody2D rigidbody2D, float yVelocity)
         {
-            rigidbody2D.velocity = rigidbody2D.velocity.ReplaceY(yVelocity);
+            rigidbody2D.velocity = rigidbody2D.velocity.SetY(yVelocity);
         }
-        
+
 
         public static void ResetVelocity(this Rigidbody2D rigidbody2D)
         {
@@ -35,42 +35,42 @@ namespace CustomHelpers
         #endregion
 
         #region RigidBody3D
-        
+
         public static void SetVelocity(this Rigidbody rigidbody, Vector3 velocity)
         {
             rigidbody.velocity = velocity;
         }
-        
+
         public static void SetVelocity(this Rigidbody rigidbody, float xVelocity, float zVelocity)
         {
-            rigidbody.velocity = new Vector3(xVelocity, rigidbody.velocity.y ,zVelocity);
+            rigidbody.velocity = new Vector3(xVelocity, rigidbody.velocity.y, zVelocity);
         }
 
-        public static void SetVelocity(this Rigidbody rigidbody, float xVelocity,float yVelocity, float zVelocity)
+        public static void SetVelocity(this Rigidbody rigidbody, float xVelocity, float yVelocity, float zVelocity)
         {
-            rigidbody.velocity = new Vector3(xVelocity, yVelocity ,zVelocity);
+            rigidbody.velocity = new Vector3(xVelocity, yVelocity, zVelocity);
         }
 
         public static void SetVelocityX(this Rigidbody rigidbody, float xVelocity)
         {
-            rigidbody.velocity = rigidbody.velocity.ReplaceX(xVelocity);
+            rigidbody.velocity = new Vector3(xVelocity, rigidbody.velocity.y, rigidbody.velocity.z);
         }
-        
+
         public static void SetVelocityY(this Rigidbody rigidbody, float yVelocity)
         {
-            rigidbody.velocity = rigidbody.velocity.ReplaceY(yVelocity);
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, yVelocity, rigidbody.velocity.z);
         }
-        
+
         public static void SetVelocityZ(this Rigidbody rigidbody, float zVelocity)
         {
-            rigidbody.velocity = rigidbody.velocity.ReplaceY(zVelocity);
+            rigidbody.velocity = new Vector3(rigidbody.velocity.x, rigidbody.velocity.y, zVelocity);
         }
-        
+
         public static void ResetVelocity(this Rigidbody rigidbody)
         {
             rigidbody.velocity = Vector3.zero;
         }
-        
+
         #endregion
     }
 }

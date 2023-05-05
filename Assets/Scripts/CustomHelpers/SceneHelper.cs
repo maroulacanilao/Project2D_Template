@@ -17,9 +17,9 @@ namespace CustomHelpers
         /// <returns></returns>
         public static List<T> FindComponentsInScene<T>(this Scene scene, bool includeInactive)
         {
-            List<T> results = new List<T>();
-        
-            foreach (GameObject root in scene.GetRootGameObjects())
+            var results = new List<T>();
+
+            foreach (var root in scene.GetRootGameObjects())
             {
                 results.AddRange(root.GetComponents<T>());
                 results.AddRange(root.GetComponentsInChildren<T>(includeInactive));
@@ -27,7 +27,7 @@ namespace CustomHelpers
 
             return results;
         }
-    
+
         /// <summary>
         /// returns first found component in a specific scene
         /// Very expensive method. only use for caching
@@ -40,7 +40,7 @@ namespace CustomHelpers
         {
             return scene.FindComponentsInScene<T>(includeInactive).FirstOrDefault();
         }
-        
+
         /// <summary>
         /// Get All main cameras in a given scene
         /// Expensive method. only use for caching
@@ -49,8 +49,8 @@ namespace CustomHelpers
         /// <returns></returns>
         public static List<Camera> GetAllMainCamerasInScene(this Scene scene, bool includeInActive)
         {
-            return includeInActive ? 
-                Camera.allCameras.Where(c => c.gameObject.scene == scene && c.gameObject.CompareTag("MainCamera")).ToList() : 
+            return includeInActive ?
+                Camera.allCameras.Where(c => c.gameObject.scene == scene && c.gameObject.CompareTag("MainCamera")).ToList() :
                 Camera.allCameras.Where(c =>
                 {
                     GameObject gameObject;
@@ -62,8 +62,8 @@ namespace CustomHelpers
         {
             return SceneManager.GetSceneByName(sceneName).GetAllMainCamerasInScene(includeInActive);
         }
-        
-        
+
+
         /// <summary>
         /// Get first found main camera in a given scene
         /// Expensive method. only use for caching
